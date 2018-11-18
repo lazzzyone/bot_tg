@@ -135,11 +135,13 @@ def add_deadline(message):
     try:
         fmt = '%d/%m/%Y %H:%M:%S'
         deadline_date = datetime.datetime.strptime(deadline_string, fmt)
-    except Exception:
+    except Exception as e:
+        print(e)
         try:
             fmt = '%H:%M:%S'
             deadline_date = datetime.datetime.strptime(deadline_string, fmt)
-        except Exception:
+        except Exception as e:
+            print(e)
             bot.send_message(chat_id=message.chat.id, text="Введенная дата не соответствует формату")
             return
     database = psycopg2.connect(config.connection_string)
