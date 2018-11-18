@@ -281,7 +281,7 @@ def send_user_group(message):
     user_id = message.chat.id
     seeked_user = message.text
     seeked_group = ""
-    json_file = open('students.json', mode='r', encoding='UTF-8')
+    json_file = open('/students.json', mode='r', encoding='UTF-8')
     json_students = json.load(json_file)
     for group, students in json_students.items():
         for student in students:
@@ -652,7 +652,7 @@ def get_timetable_text(user_id):
     result_string = []
     user_weekday = get_current_weekday()
     user_group = get_user_group(user_id)
-    json_file = open('timetable.json', 'r', encoding='UTF-8')
+    json_file = open('/timetable.json', 'r', encoding='UTF-8')
     json_timetable = json.load(json_file)
     today_table = json_timetable.get('timetable').pop(0).get(str(user_group)).pop(0).get(user_weekday)
     try:
