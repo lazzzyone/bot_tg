@@ -2,15 +2,15 @@ import datetime
 
 token = '681676837:AAGzwsd5_pQUAC1jchWufv7UdUbjMB5xZVM'
 
-economicgrowth = 'D:\Bot\economicgrowth.png'
-elasticity = 'D:\Bot\elasticity.png'
+economicgrowth = 'timetables\economicgrowth.png'
+elasticity = 'timetables\elasticity.png'
 markets = 'D:\Bot\markets.png'
 production_and_costs = 'D:\Bot\production_and_costs.png'
 unemployment = 'D:\\Bot\\unemployment.png'
 inflation = 'D:\Bot\inflation.png'
 GDP = 'D:\Bot\GDP.png'
 gini = 'D:\Bot\gini.png'
-kvp = 'D:\Bot\kvp.png'
+kvp = 'timetables\kvp.png'
 
 _10me1 = 'D:\Bot\\timetables\\10МЭ1.jpg'
 _10me2 = 'D:\Bot\\timetables\\10МЭ2.jpg'
