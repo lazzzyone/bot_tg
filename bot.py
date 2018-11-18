@@ -872,17 +872,17 @@ def create_db():
     cursor = database.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS ''' + config.users_table + '''
-                    (id INT64, user_group TEXT ,has_deadlines BOOLEAN, condition TEXT)
+                    (id bigint, user_group TEXT ,has_deadlines BOOLEAN, condition TEXT)
     ''')
     database.commit()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS ''' + config.deadlines_table + '''
-                    (id INT64, deadline_string TEXT, circular TEXT DEFAULT "empty", frequency TEXT)
+                    (id bigint, deadline_string TEXT, circular TEXT DEFAULT "empty", frequency TEXT)
     ''')
     database.commit()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS ''' + config.notifications_table + '''
-                    (id_5 INT64, last_notified_5 TEXT, id_10 INT64, last_notified_10 TEXT)
+                    (id_5 bigint, last_notified_5 TEXT, id_10 bigint, last_notified_10 TEXT)
     ''')
     database.commit()
 
