@@ -48,7 +48,7 @@ https://www.instagram.com/hse_lyceum/?hl=ru лицей НИУ ВШЭ
 https://www.instagram.com/raven_press_hse/?hl=ru raven press
 https://www.instagram.com/om.team_/  организация мероприятий """
 
-connection_string = "host='http://ec2-79-125-124-30.eu-west-1.compute.amazonaws.com' dbname='d2b2cuvkqcaflp' " \
+connection_string = "host='ec2-79-125-124-30.eu-west-1.compute.amazonaws.com' dbname='d2b2cuvkqcaflp' " \
                     "port='5432' user='ywdmdxihjmmrvv' " \
                     "password='1b2b751c24f0f0c62f6fc29b129d5744ddc3391c55a608d9a84ef966a0833e33' "
 
