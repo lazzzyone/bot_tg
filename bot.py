@@ -887,4 +887,3 @@ def create_db():
 if __name__ == '__main__':
     create_db()
     bot.polling(none_stop=True, timeout=5)
-    p1.start()
