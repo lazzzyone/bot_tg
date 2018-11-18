@@ -262,7 +262,7 @@ def add_user_to_db(id_):
 def add_user_group_bd(message):
     db = psycopg2.connect(config.connection_string)
     database_cursor = db.cursor()
-    database_cursor.execute('''UPDATE users_table SET user_group = "''' + message.text + '''" WHERE id = ''' +
+    database_cursor.execute('''UPDATE users_table SET user_group = \'''' + message.text + '''\' WHERE id = ''' +
                             str(message.chat.id))
     db.commit()
     pass
@@ -271,7 +271,7 @@ def add_user_group_bd(message):
 def change_condition_bd(new_condition, user_id):
     db = psycopg2.connect(config.connection_string)
     database_cursor = db.cursor()
-    database_cursor.execute('''UPDATE users_table SET condition = "''' + new_condition + '''" WHERE id = ''' +
+    database_cursor.execute('''UPDATE users_table SET condition = \'''' + new_condition + '''\' WHERE id = ''' +
                             str(user_id))
     db.commit()
     pass
