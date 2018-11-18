@@ -877,7 +877,7 @@ def create_db():
     database.commit()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS ''' + config.deadlines_table + '''
-                    (id bigint, deadline_string TEXT, circular TEXT DEFAULT "empty", frequency TEXT)
+                    (id bigint, deadline_string TEXT, circular TEXT, frequency TEXT)
     ''')
     database.commit()
     cursor.execute('''
