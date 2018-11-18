@@ -607,7 +607,8 @@ def send_timetable_photo(message):
             bot.send_photo(user_id, photo, "Расписание на неделю")
         else:
             bot.send_message(id, "Расписание введенной группы отсутствует")
-    except Exception:
+    except Exception as e:
+        print(e)
         bot.send_message(chat_id=user_id, text="Группа введена неверно. Пример: 10МЭ3")
     pass
 
@@ -619,7 +620,8 @@ def get_user_group(user_id):
         cursor.execute('''SELECT user_group FROM users_table WHERE id = ''' + str(user_id))
         group = cursor.fetchone()
         return group[0]
-    except Exception:
+    except Exception as e:
+        print(e)
         return "null"
     pass
 
@@ -657,7 +659,8 @@ def get_timetable_text(user_id):
             result_string.append(tt)
             result_string.append('\n')
         message = ''.join(result_string)
-    except Exception:
+    except Exception as e:
+        print(e)
         message = "Расписание на данный день отсутствует"
     return message
     pass
@@ -687,7 +690,8 @@ def user_has_group(user_id):
             return False
         else:
             return True
-    except Exception:
+    except Exception as e:
+        print(e)
         return False
     pass
 
@@ -841,11 +845,9 @@ def functions(call):
             elif call.data == "economicgrowth" or "inflation" or "unemployment" or "markets" or "production_and_costs" \
                     or "kvp" or "gini" or "gdp" or "elasticity":
                 send_formula_image(call)
-
-
-
             else:
                 bot.send_message(call.message.chat.id, "Error")
+
         else:
             if str(call.message.text) in config.groups:
                 add_user_group_bd(call.message)
