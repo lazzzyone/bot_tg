@@ -856,7 +856,7 @@ def functions(call):
             else:
                 print(str(call.message.text))
                 print(call.message.text in config.groups)
-                bot.send_message(call.message.chat.id, "Введите вашу группу \n Например: 10МЭ3")
+                bot.send_message(call.message.chat.id, "Введите вашу группу \n Например: 10МЭ2")
 
 
 def get_condition(user_id):
