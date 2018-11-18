@@ -2,10 +2,10 @@ import datetime
 
 token = '681676837:AAGzwsd5_pQUAC1jchWufv7UdUbjMB5xZVM'
 
-economicgrowth = '\\timetables\economicgrowth.png'
+economicgrowth = '.\\timetables\economicgrowth.png'
 elasticity = '\\timetables\elasticity.png'
 markets = '\\timetable\smarkets.png'
-production_and_costs = '\\timetables\production_and_costs.png'
+production_and_costs = '.\\timetables\production_and_costs.png'
 unemployment = 'D:\\Bot\\unemployment.png'
 inflation = '\\timetables\inflation.png'
 GDP = '\\timetables\GDP.png'
