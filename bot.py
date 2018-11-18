@@ -10,6 +10,7 @@ import numpy as np
 from threading import Thread
 import multiprocessing
 import time
+import psycopg2
 
 bot = telebot.AsyncTeleBot(config.token)
 
@@ -84,7 +85,7 @@ def check_deadlines(times):
 
 
 def get_data_from_db(user_id, get_exist, get_group, get_hasdeadlines, get_condition_db):
-    database_cursor = sqlite3.connect(config.db_path).cursor()
+    database_cursor = psycopg2.connect(config.connection_string).cursor()
     if get_exist and not get_hasdeadlines and not get_condition_db:
         try:
             database_cursor.execute('''SELECT * FROM ''' + config.users_table + ''' WHERE id = ''' + str(user_id))
@@ -867,7 +868,7 @@ def get_condition(user_id):
 
 
 def create_db():
-    database = sqlite3.connect(config.db_path)
+    database = psycopg2.connect(config.connection_string)
     cursor = database.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS ''' + config.users_table + '''

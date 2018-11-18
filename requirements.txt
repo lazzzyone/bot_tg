@@ -2,3 +2,4 @@ pyTelegramBotAPI
 telebot
 pytz
 numpy
+psycopg2
