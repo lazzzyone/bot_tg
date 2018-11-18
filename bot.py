@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import config
 import telebot
-import sqlite3
 import datetime
 from telebot import types
 import pytz
@@ -16,7 +15,7 @@ bot = telebot.AsyncTeleBot(config.token)
 
 
 def notify_10_mins(delta):
-    database = sqlite3.connect(config.db_path)
+    database = psycopg2.connect(config.connection_string)
     database_cursor = database.cursor()
     database_cursor.execute('''SELECT id_10,last_notified_10  FROM notifications WHERE id_10 IS NOT NULL''')
     data = database_cursor.fetchall()
@@ -35,7 +34,7 @@ def notify_10_mins(delta):
 
 
 def notify_5_mins(delta):
-    database = sqlite3.connect(config.db_path)
+    database = psycopg2.connect(config.connection_string)
     database_cursor = database.cursor()
     database_cursor.execute('''SELECT id_5,last_notified_5  FROM notifications WHERE id_5 IS NOT NULL''')
     data = database_cursor.fetchall()
@@ -111,12 +110,13 @@ def get_data_from_db(user_id, get_exist, get_group, get_hasdeadlines, get_condit
 
 
 def show_deadlines(user_id):
-    database_cursor = sqlite3.connect(config.db_path).cursor()
+    database_cursor = psycopg2.connect(config.connection_string).cursor()
     try:
         reply = database_cursor.execute('SELECT * FROM DEADLINES_TABLE WHERE id = ' + str(id))
         all_rows = reply.fetchall()
         print('1):', all_rows)
-    except sqlite3.Error:
+    except Exception as e:
+        print(e)
         bot.send_message(user_id, "Не удалось ничего найти")
 
 
@@ -142,7 +142,7 @@ def add_deadline(message):
         except Exception:
             bot.send_message(chat_id=message.chat.id, text="Введенная дата не соответствует формату")
             return
-    database = sqlite3.connect(config.db_path)
+    database = psycopg2.connect(config.connection_string)
     cursor = database.cursor()
     cursor.execute('''INSERT INTO deadlines_table (id, deadline_string)\n VALUES(''' + str(user_id) + ''', "''' + str(
         deadline_date) + '''");
@@ -251,7 +251,7 @@ def start(message):
 
 
 def add_user_to_db(id_):
-    db = sqlite3.connect(config.db_path)
+    db = psycopg2.connect(config.connection_string)
     database_cursor = db.cursor()
     database_cursor.execute('''INSERT INTO users_table (id, condition)\n VALUES(''' + str(id_) +
                             ''', 'get_group');''')
@@ -260,7 +260,7 @@ def add_user_to_db(id_):
 
 
 def add_user_group_bd(message):
-    db = sqlite3.connect(config.db_path)
+    db = psycopg2.connect(config.connection_string)
     database_cursor = db.cursor()
     database_cursor.execute('''UPDATE users_table SET user_group = "''' + message.text + '''" WHERE id = ''' +
                             str(message.chat.id))
@@ -269,7 +269,7 @@ def add_user_group_bd(message):
 
 
 def change_condition_bd(new_condition, user_id):
-    db = sqlite3.connect(config.db_path)
+    db = psycopg2.connect(config.connection_string)
     database_cursor = db.cursor()
     database_cursor.execute('''UPDATE users_table SET condition = "''' + new_condition + '''" WHERE id = ''' +
                             str(user_id))
@@ -460,7 +460,7 @@ def send_notification_keyboard(user_id):
 
 
 def add_user_notifications(user_id, minutes):
-    db_ = sqlite3.connect(config.db_path)
+    db_ = psycopg2.connect(config.connection_string)
     cursor = db_.cursor()
     if minutes == 5:
         cursor.execute('''INSERT INTO ''' + config.notifications_table + ''' (id_5)\n VALUES(''' +
@@ -473,7 +473,7 @@ def add_user_notifications(user_id, minutes):
 
 
 def delete_user_notifications(user_id):
-    db_ = sqlite3.connect(config.db_path)
+    db_ = psycopg2.connect(config.connection_string)
     cursor = db_.cursor()
     cursor.execute('''DELETE FROM ''' + config.notifications_table + ''' WHERE id_5 = '''+str(user_id) +
                    ''' or id_10 = '''+str(user_id))
@@ -616,7 +616,7 @@ def send_timetable_photo(message):
 
 def get_user_group(user_id):
     try:
-        db_ = sqlite3.connect(config.db_path)
+        db_ = psycopg2.connect(config.connection_string)
         cursor = db_.cursor()
         cursor.execute('''SELECT user_group FROM users_table WHERE id = ''' + str(user_id))
         group = cursor.fetchone()
@@ -668,7 +668,7 @@ def get_timetable_text(user_id):
 
 
 def set_deadline_type(user_id, param):
-    database = sqlite3.connect(config.db_path)
+    database = psycopg2.connect(config.connection_string)
     database_cursor = database.cursor()
     if param == "once":
         database_cursor.execute('''UPDATE deadlines_table SET circular = "once" WHERE id = ''' + str(user_id) +
@@ -682,7 +682,7 @@ def set_deadline_type(user_id, param):
 
 def user_has_group(user_id):
     try:
-        database = sqlite3.connect(config.db_path)
+        database = psycopg2.connect(config.connection_string)
         database_cursor = database.cursor()
         database_cursor.execute('''SELECT user_group FROM users_table WHERE id = ''' + str(user_id))
         group = database_cursor.fetchone()[0]
@@ -861,7 +861,7 @@ def functions(call):
 
 
 def get_condition(user_id):
-    database = sqlite3.connect(config.db_path)
+    database = psycopg2.connect(config.connection_string)
     database_cursor = database.cursor()
     database_cursor.execute('''SELECT condition FROM users_table WHERE id = ''' + str(user_id))
     return str(database_cursor.fetchone()[0])
