@@ -2,5 +2,5 @@ pyTelegramBotAPI
 telebot
 pytz
 numpy
-psycopg2
 flask
+psycopg2
