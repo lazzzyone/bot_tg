@@ -3,4 +3,3 @@ telebot
 pytz
 numpy
 psycopg2
-flask
