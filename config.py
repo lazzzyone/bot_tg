@@ -202,7 +202,7 @@ teachers = {
     "Батюк Н.С.": 'teachers/teachers/batuk.png',
     "Ясный Е.В.": 'teachers/teachers/yasniy.png',
     "Тищенко Н.Ю.": 'teachers/teachers/tishenko.png',
-    "Молокостова А.М.": 'teachers/teachers/molostova.png',
+    "Молокостова А.М.":  'teachers/teachers/molostova.png',
     "Байбурин Р.Ф.": 'teachers/teachers/baiburin.png',
     "Купцов А.А.": 'teachers/teachers/kuptsov.png',
     "Голубев Е.В.": 'teachers/teachers/golubev.png',
