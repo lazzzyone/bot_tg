@@ -10,7 +10,7 @@ unemployment = 'formulas/unemployment.png'
 inflation = 'formulas/inflation.png'
 GDP = 'formulas/GDP.png'
 gini = 'formulas/gini.png'
-kvp = 'formulas/kvp.png'
+kpv = 'formulas/kpv.png'
 
 _10me1 = 'timetables/10МЭ1.jpg'
 _10me2 = 'timetables/10МЭ2.jpg'

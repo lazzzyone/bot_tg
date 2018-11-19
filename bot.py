@@ -159,7 +159,7 @@ def send_formula_image(call):
     global timetable_photo
     user_id = call.message.chat.id
     image_str = call.data
-    if image_str == "kvp":
+    if image_str == "kpv":
         timetable_photo = open(config.kvp, 'rb')
         bot.send_photo(user_id, timetable_photo)
     elif image_str == "elasticity":
@@ -575,7 +575,10 @@ def send_timetable_photo(message):
     user_id = message.chat.id
     global photo
     try:
-        if group == "10МЭ2":
+        if group == "10МЭ1":
+            photo = open(config._10me1, 'rb')
+            bot.send_photo(user_id, photo, "Расписание на неделю")
+        elif group == "10МЭ2":
             photo = open(config._10me2, 'rb')
             bot.send_photo(user_id, photo, "Расписание на неделю")
         elif group == "10МЭ3":
@@ -609,7 +612,7 @@ def send_timetable_photo(message):
             photo = open(config._11me6, 'rb')
             bot.send_photo(user_id, photo, "Расписание на неделю")
         else:
-            bot.send_message(id, "Расписание введенной группы отсутствует")
+            bot.send_message(user_id, "Расписание введенной группы отсутствует")
     except Exception as e:
         print(e)
         bot.send_message(chat_id=user_id, text="Группа введена неверно. Пример: 10МЭ3")
