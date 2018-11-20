@@ -641,5 +641,5 @@ def get_timetable_text(user_id):
 
 if __name__ == '__main__':
     db.create_db()
-    bot.deleteWebhook()
+    bot.remove_webhook()
     bot.polling(none_stop=True, timeout=5)
